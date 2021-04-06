@@ -5,7 +5,7 @@
         <v-icon>mdi-arrow-left</v-icon>Back
       </v-btn>
       <v-container>
-        <h1 class="text-h2 font-weight-light light--text pt-2 pb-1">{{ project.title }}</h1>
+        <h1 class="text-h2 font-weight-light light--text pt-6 pb-1">{{ project.title }}</h1>
         <h4 class="text-h5 font-weight-light light--text pb-1">{{ project.subtitle }}</h4>
         <p class="text-body-1 lightOrange--text pb-6">{{ project.dateCreated }}</p>
 
