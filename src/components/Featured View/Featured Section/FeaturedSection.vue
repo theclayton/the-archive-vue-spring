@@ -6,7 +6,7 @@
 
       <div class="d-flex justify-space-around">
         <div class="pt-16">
-          <donut-chart :data="donutChartData" class="pt-2 pl-12"></donut-chart>
+          <donut-chart :data="donutChartData" :projectCount="projectCount" class="pt-2 pl-12"></donut-chart>
         </div>
 
         <div class="pt-16 pr-6">

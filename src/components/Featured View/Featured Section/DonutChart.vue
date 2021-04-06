@@ -8,13 +8,15 @@
 <script>
 import { select } from "d3-selection";
 import { arc, pie } from "d3-shape";
+import axios from '../../../axios/axios';
 
 export default {
   data: () => ({
-    loading: true,
+    isLoading: true,
     width: 500,
     height: 475,
     margin: 40,
+    projectCount: 0
   }),
   props: {
     data: {
@@ -22,9 +24,16 @@ export default {
     },
   },
   mounted() {
-    this.generateDonutGraph();
+    this.getProjectCount();
   },
   methods: {
+    async getProjectCount() {
+      const res = await axios.get('/projects/count')
+      this.projectCount = res.data;
+
+      this.generateDonutGraph();
+      this.isLoading = false
+    },
     generateDonutGraph() {
       const radius = Math.min(this.width, this.height) / 2 - this.margin;
 
@@ -105,7 +114,7 @@ export default {
 
       svg
         .append("text")
-        .text("45")
+        .text(this.projectCount)
         .attr("font-size", "77px")
         .attr("font-weight", "lighter")
         .style("fill", "#EFEAE1")
