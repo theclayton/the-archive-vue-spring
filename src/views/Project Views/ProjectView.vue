@@ -16,19 +16,19 @@
           text
           color="lightGreen"
           class="pa-0"
-          v-for="link in project.links"
+          v-for="link in projectLinks"
           :key="link"
           target="_blank"
           :href="link.url"
         >{{ link.name }}</v-btn>
 
-        <p class="lighterOrange--text pt-5">Technologies used:</p>
+        <p class="lighterOrange--text pt-9">Technologies used:</p>
         <div class="d-flex justify-left">
-          <v-tooltip bottom v-for="(technology, i) in project.technologies" :key="i">
+          <v-tooltip bottom v-for="(t, i) in projectTechnologies" :key="i">
             <template v-slot:activator="{ on, attrs }">
-              <a @click="findProjects(technology.name)">
+              <a @click="findProjects(t.technologies.name)">
                 <v-img
-                  :src="technology.src"
+                  :src="t.technologies.src"
                   class="mr-4"
                   max-height="26"
                   max-width="26"
@@ -37,15 +37,15 @@
                 ></v-img>
               </a>
             </template>
-            <span>{{ technology.name }}</span>
+            <span>{{ t.technologies.name }}</span>
           </v-tooltip>
         </div>
 
-        <p class="lighterOrange--text pt-8">Description:</p>
+        <p class="lighterOrange--text pt-11">Description:</p>
         <p v-for="line, i in project.description.split('\n')" :key="i" class="text-body-1 light--text">{{ line }}</p>
 
         <v-carousel cycle height="500" class="rounded-xl mt-15 mb-10" continuous hide-delimiter-background show-arrows-on-hover touch>
-          <v-carousel-item v-for="(image, i) in project.images" :key="i" :src="image.src">
+          <v-carousel-item v-for="(image, i) in projectImages" :key="i" :src="image.src">
             <v-row class="fill-height" align="end" justify="center">
               <v-sheet class="px-15 py-1">
                 <p class="text-subtitle-1 pa-1">{{ image.caption }}</p>
@@ -67,6 +67,9 @@ export default {
     isLoading: false,
     valid: false,
     project: { title: "" },
+    projectTechnologies: [],
+    projectLinks: [],
+    projectImages: [],
     showPassword: false,
     errorText: "",
     showError: false,
@@ -80,6 +83,7 @@ export default {
   mounted() {
     window.scrollTo(0, 0);
     this.project.title = this.$route.params.name;
+
     this.getProject();
   },
   watch: {
@@ -99,8 +103,42 @@ export default {
         );
         this.project = res.data;
         this.isLoading = false;
+
+        this.getTechnologies();
+        this.getLinks();
+        this.getImages();
       } catch (error) {
         router.push({ path: "/" });
+      }
+    },
+    async getTechnologies() {
+      try {
+        const res = await axios.get(
+          `/technologies/project/${this.project._id}`
+        );
+        this.projectTechnologies = res.data;
+      } catch (error) {
+        // pass
+      }
+    },
+    async getLinks() {
+      try {
+        const res = await axios.get(
+          `/links/project/${this.project._id}`
+        );
+        this.projectLinks = res.data;
+      } catch (error) {
+        // pass
+      }
+    },
+    async getImages() {
+      try {
+        const res = await axios.get(
+          `/images/project/${this.project._id}`
+        );
+        this.projectImages = res.data;
+      } catch (error) {
+        // pass
       }
     },
     findProjects(terms) {
