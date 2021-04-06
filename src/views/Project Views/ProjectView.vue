@@ -42,15 +42,35 @@
         </div>
 
         <p class="lighterOrange--text pt-11">Description:</p>
-        <p v-for="line, i in project.description.split('\n')" :key="i" class="text-body-1 light--text">{{ line }}</p>
+        <p
+          v-for="line, i in project.description.split('\n')"
+          :key="i"
+          class="text-body-1 light--text"
+        >{{ line }}</p>
 
-        <v-carousel cycle height="500" class="rounded-xl mt-15 mb-10" continuous hide-delimiter-background show-arrows-on-hover touch>
-          <v-carousel-item v-for="(image, i) in projectImages" :key="i" :src="image.src">
-            <v-row class="fill-height" align="end" justify="center">
-              <v-sheet class="px-15 py-1">
-                <p class="text-subtitle-1 pa-1">{{ image.caption }}</p>
-              </v-sheet>
-            </v-row>
+        <v-carousel
+          cycle
+          height="510"
+          class="rounded-xl mt-15 mb-10"
+          continuous
+          hide-delimiter-background
+          show-arrows-on-hover
+          touch
+        >
+          <v-carousel-item v-for="(image, i) in projectImages" :key="i">
+            <v-sheet dark class="fill-height">
+              <v-row class="fill-height" align="end" justify="center">
+                <div>
+                  <v-img
+                    :src="image.src"
+                    :max-height="450"
+                    :max-width="image.width"
+                    class="justify-center align-self-center"
+                  ></v-img>
+                  <p class="text-subtitle-1 lighter--text text-center pt-1 pb-4">{{ image.caption }}</p>
+                </div>
+              </v-row>
+            </v-sheet>
           </v-carousel-item>
         </v-carousel>
       </v-container>
@@ -123,9 +143,7 @@ export default {
     },
     async getLinks() {
       try {
-        const res = await axios.get(
-          `/links/project/${this.project._id}`
-        );
+        const res = await axios.get(`/links/project/${this.project._id}`);
         this.projectLinks = res.data;
       } catch (error) {
         // pass
@@ -133,9 +151,7 @@ export default {
     },
     async getImages() {
       try {
-        const res = await axios.get(
-          `/images/project/${this.project._id}`
-        );
+        const res = await axios.get(`/images/project/${this.project._id}`);
         this.projectImages = res.data;
       } catch (error) {
         // pass
