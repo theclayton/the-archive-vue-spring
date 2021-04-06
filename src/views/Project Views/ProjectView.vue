@@ -1,0 +1,114 @@
+<template>
+  <div>
+    <v-card color="dark" class="mx-5 mb-15">
+      <v-btn text class="lightBlue--text pt-2" @click="backClicked()">
+        <v-icon>mdi-arrow-left</v-icon>Back
+      </v-btn>
+      <v-container>
+        <h1 class="text-h2 font-weight-light light--text pt-2 pb-1">{{ project.title }}</h1>
+        <h4 class="text-h5 font-weight-light light--text pb-1">{{ project.subtitle }}</h4>
+        <p class="text-body-1 lightOrange--text pb-6">{{ project.dateCreated }}</p>
+
+        <v-divider dark></v-divider>
+
+        <p class="lighterOrange--text pt-2">Project links:</p>
+        <v-btn
+          text
+          color="lightGreen"
+          class="pa-0"
+          v-for="link in project.links"
+          :key="link"
+          target="_blank"
+          :href="link.url"
+        >{{ link.name }}</v-btn>
+
+        <p class="lighterOrange--text pt-5">Technologies used:</p>
+        <div class="d-flex justify-left">
+          <v-tooltip bottom v-for="(technology, i) in project.technologies" :key="i">
+            <template v-slot:activator="{ on, attrs }">
+              <a @click="findProjects(technology.name)">
+                <v-img
+                  :src="technology.src"
+                  class="mr-4"
+                  max-height="26"
+                  max-width="26"
+                  v-on="on"
+                  v-bind="attrs"
+                ></v-img>
+              </a>
+            </template>
+            <span>{{ technology.name }}</span>
+          </v-tooltip>
+        </div>
+
+        <p class="lighterOrange--text pt-8">Description:</p>
+        <p v-for="line, i in project.description.split('\n')" :key="i" class="text-body-1 light--text">{{ line }}</p>
+
+        <v-carousel cycle height="500" class="rounded-xl mt-15 mb-10" continuous hide-delimiter-background show-arrows-on-hover touch>
+          <v-carousel-item v-for="(image, i) in project.images" :key="i" :src="image.src">
+            <v-row class="fill-height" align="end" justify="center">
+              <v-sheet class="px-15 py-1">
+                <p class="text-subtitle-1 pa-1">{{ image.caption }}</p>
+              </v-sheet>
+            </v-row>
+          </v-carousel-item>
+        </v-carousel>
+      </v-container>
+    </v-card>
+  </div>
+</template>
+
+<script>
+import axios from "../../axios/axios";
+import router from "../../router/index";
+
+export default {
+  data: () => ({
+    isLoading: false,
+    valid: false,
+    project: { title: "" },
+    showPassword: false,
+    errorText: "",
+    showError: false,
+    username: "",
+    password: "",
+    rules: {
+      required: (value) => !!value || "Required.",
+      min: (v) => v.length >= 8 || "Min 8 characters",
+    },
+  }),
+  mounted() {
+    window.scrollTo(0, 0);
+    this.project.title = this.$route.params.name;
+    this.getProject();
+  },
+  watch: {
+    $route() {
+      this.project.title = this.$route.params.name;
+      this.getProject();
+    },
+  },
+  methods: {
+    backClicked() {
+      history.back();
+    },
+    async getProject() {
+      try {
+        const res = await axios.get(
+          `/projects/${encodeURI(this.project.title)}`
+        );
+        this.project = res.data.project;
+        this.isLoading = false;
+      } catch (error) {
+        router.push({ path: "/" });
+      }
+    },
+    findProjects(terms) {
+      router.push(`/search?terms=${terms}`);
+    },
+  },
+};
+</script>
+
+<style>
+</style>
