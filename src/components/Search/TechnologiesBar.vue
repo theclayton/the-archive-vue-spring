@@ -25,8 +25,8 @@ export default {
   methods: {
     async getTechnologies() {
       try {
-        const res = await axios.get("/projects/unique/technologies");
-        this.technologies = res.data.techs;
+        const res = await axios.get("/technologies");
+        this.technologies = res.data;
       } catch (error) {
         // pass
       }

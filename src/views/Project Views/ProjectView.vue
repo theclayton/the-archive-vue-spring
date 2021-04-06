@@ -97,7 +97,7 @@ export default {
         const res = await axios.get(
           `/projects/${encodeURI(this.project.title)}`
         );
-        this.project = res.data.project;
+        this.project = res.data;
         this.isLoading = false;
       } catch (error) {
         router.push({ path: "/" });

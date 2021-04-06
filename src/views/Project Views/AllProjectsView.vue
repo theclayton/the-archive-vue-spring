@@ -103,7 +103,7 @@ export default {
     async getProjects() {
       try {
         let res = await axios.get(`/projects`);
-        this.projects = res.data.projects;
+        this.projects = res.data;
         this.isLoading = false;
       } catch (error) {
         // pass

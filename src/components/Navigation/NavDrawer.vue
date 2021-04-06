@@ -32,7 +32,7 @@
         <v-list-item-title class="light--text">API Ref</v-list-item-title>
       </v-list-item>
 
-      <v-list-item href="https://github.com/theclayton/the-archive-vue" target="_blank">
+      <v-list-item href="https://github.com/theclayton/the-archive-vue-spring" target="_blank">
         <v-list-item-icon>
           <v-icon color="lighter">mdi-xml</v-icon>
         </v-list-item-icon>
