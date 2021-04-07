@@ -49,4 +49,7 @@ export default {
 .padding-nav-drawer {
   padding-left: 56px;
 }
+.pointer {
+  cursor: pointer;
+}
 </style>

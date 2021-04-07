@@ -18,7 +18,11 @@ Vue.use(VueRouter)
 // Ordered by 'views' file structure
 const routes = [
   {
-    path: '/admin-panel',
+    path :'*',
+    component:FeaturedView
+  },
+  {
+    path: '/admin',
     name: 'Admin Panel',
     component: AdminPanelView,
     exact: true
