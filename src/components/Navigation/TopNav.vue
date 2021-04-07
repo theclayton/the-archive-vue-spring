@@ -34,12 +34,6 @@
             </v-list-item-icon>
             <v-list-item-title class="light--text">Admin</v-list-item-title>
           </v-list-item>
-          <v-list-item link to="/my-account" :disabled="!isLoggedIn">
-            <v-list-item-icon>
-              <v-icon color="lighter">mdi-account-settings</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title class="light--text">My Account</v-list-item-title>
-          </v-list-item>
         </v-list>
       </v-menu>
     </div>
