@@ -93,10 +93,20 @@ export default {
       }
     },
     async createLink() {
-
+      try {
+        await axios.post('/links/project/create', { name: this.newLinkName, url: this.newLinkUrl, projectId: this.projectID})
+        this.dialog = false
+      } catch (error) {
+        // pass
+      }
     },
     async removelink(id, index) {
-      console.log(id + index)
+      try {
+        await axios.delete(`/links/project/${id}`)
+        this.links.splice(index, 1);
+      } catch (error) {
+        // pass
+      }
     },
     openLink(url) {
       window.open(url, '_blank');
