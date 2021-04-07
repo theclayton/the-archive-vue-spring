@@ -38,13 +38,23 @@
 </template>
 
 <script>
+import axios from '../../../axios/axios';
+
 export default {
   data: () => ({
     isLoading: false,
     newCategoryName: "",
+    dialog: false
   }),
   methods: {
-    async createCategory() {},
+    async createCategory() {
+      try {
+        axios.post('/categories/create', { name: this.newCategoryName })
+      } catch (error) {
+        // pass
+      }
+      this.dialog = false
+    },
   },
 };
 </script>
