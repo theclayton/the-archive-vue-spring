@@ -16,7 +16,7 @@
         </v-row>
 
         <v-select
-          class="pt-5"
+          class="pt-7"
           v-model="project.categories._id"
           :items="categories"
           :item-text="'name'"
@@ -27,18 +27,11 @@
           dark
         ></v-select>
 
-        <technologies-editor class="pt-5"></technologies-editor>
-       
-        <v-divider dark class="mt-5 mb-8"></v-divider>
-        
-        <link-editor class=""></link-editor>
-
-        <v-divider dark class="mt-4 mb-12"></v-divider>
+        <v-divider dark class="mt-1 mb-7"></v-divider>
 
         <v-form v-model="valid">
           <v-text-field
             v-model="project.title"
-            class="mt-7"
             label="Title"
             placeholder="Title"
             :disabled="isLoading"
@@ -89,6 +82,14 @@
             dark
           ></v-text-field>
 
+          <technologies-editor class="pt-5"></technologies-editor>
+
+          <v-divider dark class="mt-5 mb-8"></v-divider>
+
+          <link-editor class></link-editor>
+
+          <v-divider dark class="mt-4 mb-8"></v-divider>
+
           <div>
             <h4 class="light--text">Featured:</h4>
             <v-switch v-model="project.featured" color="lighter" dark></v-switch>
@@ -123,7 +124,7 @@
           </v-expansion-panels>
 
           <v-divider class="mt-3 mb-7" dark></v-divider>
-                    <v-btn
+          <v-btn
             rounded
             x-large
             class="mr-4"
@@ -132,7 +133,7 @@
             :disabled="isLoading"
             @click="submitForm()"
           >SUBMIT</v-btn>
-          
+
           <v-btn
             rounded
             x-large
@@ -166,7 +167,7 @@ export default {
   data: () => ({
     isLoading: true,
     valid: false,
-    project: { title: "", categories: { _id: -1 }},
+    project: { title: "", categories: { _id: -1 } },
     categories: [],
     showPassword: false,
     errorText: "",
