@@ -1,11 +1,10 @@
 <template>
   <div>
     <v-card color="dark" class="mx-5 mb-5">
+      <v-btn text class="lightBlue--text" @click="backClicked()">
+        <v-icon>mdi-arrow-left</v-icon>Back
+      </v-btn>
       <v-container class="pb-10">
-        <v-btn text class="lightBlue--text pa-0" @click="backClicked()">
-          <v-icon>mdi-arrow-left</v-icon>Back
-        </v-btn>
-
         <h1 class="text-h4 font-weight-light light--text pb-5">Project Editor</h1>
 
         <v-divider dark></v-divider>
@@ -109,6 +108,7 @@
             :rules="[rules.required]"
             outlined
             rounded
+            auto-grow
             clearable
             required
             dark
