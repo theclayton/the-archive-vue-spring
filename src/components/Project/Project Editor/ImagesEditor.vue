@@ -66,27 +66,37 @@
       <v-btn
         rounded
         x-large
-        class="ml-1 mb-6"
+        class="ml-1 mb-6 mr-3"
         color="lighterOrange darkRed--text"
         v-if="!isLoading"
         :disabled="isLoading"
         @click="saveImage(image)"
       >Save</v-btn>
 
+      <v-btn
+        rounded
+        x-large
+        class="ml-1 mb-6"
+        color="darkRed light--text"
+        v-if="!isLoading"
+        :disabled="isLoading"
+        @click="removeImage(image, image._id)"
+      >DELETE</v-btn>
+
       <v-divider dark class="mt-1 mb-10"></v-divider>
     </div>
 
-      <v-btn
-        rounded
-        fab
-        class="ml-5"
-        color="lightGreen lighter--text"
-        v-if="!isLoading"
-        :disabled="isLoading"
-        @click="createImage()"
-      >
-        <v-icon dark>mdi-plus</v-icon>
-      </v-btn>
+    <v-btn
+      rounded
+      x-large
+      class="ml-2 mb-6"
+      color="lightGreen lighter--text"
+      v-if="!isLoading"
+      :disabled="isLoading"
+      @click="createImage()"
+    >
+      <v-icon dark>mdi-plus</v-icon>NEW IMAGE
+    </v-btn>
   </div>
 </template>
 
@@ -115,14 +125,31 @@ export default {
       }
     },
     async createImage() {
-      // API create blank image
+      try {
+        await axios.post("/images/project/create", {
+          projectId: this.projectID,
+        });
+      } catch (error) {
+        // pass
+      }
       this.getImages();
     },
-    async removeImage(id) {
-      console.log(id);
+    async removeImage(index, id) {
+      try {
+        await axios.delete(`/images/project/${id}`);
+        this.images.splice(index, 1);
+      } catch (error) {
+        // pass
+      }
     },
     async saveImage(image) {
-      console.log(image)
+      this.isLoading = true;
+      try {
+        await axios.put("/images/project", image);
+      } catch (error) {
+        // pass
+      }
+      this.isLoading = false;
     },
   },
 };

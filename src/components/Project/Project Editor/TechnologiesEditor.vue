@@ -135,7 +135,7 @@ export default {
     },
     async createTechnology() {
       try {
-        axios.post('/technologies/create', { name: this.newTechnologyName, src: this.newTechnologySrc })
+        await axios.post('/technologies/create', { name: this.newTechnologyName, src: this.newTechnologySrc })
         this.getAllTechnologies();
         this.dialog = false;
       } catch {

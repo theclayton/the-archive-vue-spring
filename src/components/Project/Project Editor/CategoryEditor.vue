@@ -49,7 +49,7 @@ export default {
   methods: {
     async createCategory() {
       try {
-        axios.post('/categories/create', { name: this.newCategoryName })
+        await axios.post('/categories/create', { name: this.newCategoryName })
       } catch (error) {
         // pass
       }
