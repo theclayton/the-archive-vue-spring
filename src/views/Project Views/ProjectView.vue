@@ -1,11 +1,16 @@
 <template>
   <div>
     <v-card color="dark" class="mx-5 mb-15">
-      <v-btn text class="lightBlue--text pt-2" @click="backClicked()">
+      <v-row class="ma-0">
+      <v-btn text class="lightBlue--text" @click="backClicked()">
         <v-icon>mdi-arrow-left</v-icon>Back
       </v-btn>
+      <v-spacer></v-spacer>
+        <p class="text-h6 font-weight-light lightGreen--text mr-6 mt-1 justify-self-end right-align text-right">{{ project.categories.name }}</p>
+      </v-row>
+
       <v-container>
-        <h1 class="text-h2 font-weight-light light--text pt-6 pb-1">{{ project.title }}</h1>
+        <h1 class="text-h2 font-weight-light light--text pb-1">{{ project.title }}</h1>
         <h4 class="text-h5 font-weight-light light--text pb-1">{{ project.subtitle }}</h4>
         <p class="text-body-1 lightOrange--text pb-6">{{ project.dateCreated }}</p>
 
@@ -86,7 +91,7 @@ export default {
   data: () => ({
     isLoading: false,
     valid: false,
-    project: { title: "" },
+    project: { title: "", categories: { name: "Other" }},
     projectTechnologies: [],
     projectLinks: [],
     projectImages: [],
@@ -102,13 +107,13 @@ export default {
   }),
   mounted() {
     window.scrollTo(0, 0);
-    this.project.title = this.$route.params.name;
+    this.project._id = this.$route.params.id;
 
     this.getProject();
   },
   watch: {
     $route() {
-      this.project.title = this.$route.params.name;
+      this.project._id = this.$route.params.id;
       this.getProject();
     },
   },
@@ -119,7 +124,7 @@ export default {
     async getProject() {
       try {
         const res = await axios.get(
-          `/projects/${encodeURI(this.project.title)}`
+          `/projects/${encodeURI(this.project._id)}`
         );
         this.project = res.data;
         this.isLoading = false;

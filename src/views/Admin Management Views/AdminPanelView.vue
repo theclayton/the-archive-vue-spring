@@ -94,7 +94,7 @@ export default {
       }
     },
     projectClick(project) {
-      router.push({ path: `edit/project/${project.title}` });
+      router.push({ path: `edit/project/${project._id}` });
     },
   },
 };

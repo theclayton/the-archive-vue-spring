@@ -58,13 +58,13 @@ const routes = [
     exact: true
   },
   {
-    path: '/edit/project/:name',
+    path: '/edit/project/:id',
     name: 'Edit Project',
     component: ProjectEditorView,
     props: true
   },
   {
-    path: '/project/:name',
+    path: '/project/:id',
     name: 'Project View',
     component: ProjectView,
     props: true

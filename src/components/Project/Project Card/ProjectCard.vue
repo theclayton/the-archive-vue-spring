@@ -1,6 +1,6 @@
 <template>
 <div class="pa-5">
-  <a @click="projectClicked(project.title)">
+  <a @click="projectClicked(project._id)">
     <v-img :src="project.prev_src" height="200" max-width="350" class="rounded-t-xl mx-auto"></v-img>
     <div class="d-flex">
       <v-img :src="project.thumbnail" max-height="40" max-width="40" class="rounded-circle mt-5 ml-3" ></v-img>
@@ -20,8 +20,8 @@ export default {
     },
   },
   methods: {
-      projectClicked(name) {
-          router.push({ path: `/project/${name}` })
+      projectClicked(id) {
+          router.push({ path: `/project/${id}` })
       }
   }
 };
