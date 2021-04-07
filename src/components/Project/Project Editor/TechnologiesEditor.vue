@@ -117,19 +117,30 @@ export default {
         // pass
       }
     },
-    async removeTechnology(id, index) {
-      console.log(id);
-      // remove by proj-tech id
-
-      this.technologies.splice(index, 1);
-    },
     async addTechnology(id) {
-      alert("add techn id: " + id);
+      try {
+        await axios.post('/technologies/project/create', { projectId: this.projectID, technologies: { _id: id }})
+        this.getTechnolgies();
+      } catch (error) {
+        // pass
+      }
+    },
+    async removeTechnology(id, index) {
+      try {
+        await axios.delete(`/technologies/project/${id}`)
+        this.technologies.splice(index, 1);
+      } catch {
+        // pass
+      }
     },
     async createTechnology() {
-      // Add to db
-
-      this.getAllTechnologies();
+      try {
+        axios.post('/technologies/create', { name: this.newTechnologyName, src: this.newTechnologySrc })
+        this.getAllTechnologies();
+        this.dialog = false;
+      } catch {
+        // pass
+      }
     },
   },
 };

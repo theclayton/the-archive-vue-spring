@@ -63,19 +63,18 @@
         dark
       ></v-text-field>
 
-      <v-divider dark class="mt-1 mb-10"></v-divider>
-    </div>
-
-    <v-row class="pb-5">
       <v-btn
         rounded
         x-large
-        class="ml-4"
+        class="ml-1 mb-6"
         color="lighterOrange darkRed--text"
         v-if="!isLoading"
         :disabled="isLoading"
-        @click="saveImages()"
-      >Save Images</v-btn>
+        @click="saveImage(image)"
+      >Save</v-btn>
+
+      <v-divider dark class="mt-1 mb-10"></v-divider>
+    </div>
 
       <v-btn
         rounded
@@ -88,7 +87,6 @@
       >
         <v-icon dark>mdi-plus</v-icon>
       </v-btn>
-    </v-row>
   </div>
 </template>
 
@@ -123,7 +121,9 @@ export default {
     async removeImage(id) {
       console.log(id);
     },
-    async saveImages() {},
+    async saveImage(image) {
+      console.log(image)
+    },
   },
 };
 </script>
