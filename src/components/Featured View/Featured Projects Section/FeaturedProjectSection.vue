@@ -28,8 +28,8 @@ export default {
   methods: {
     async getProjects() {
       try {
-        const res = await axios.get("/projects/featured/home");
-        this.projects = res.data.projects;
+        const res = await axios.get("/projects/featured");
+        this.projects = res.data;
         this.isLoading = false;
       } catch (error) {
         // pass
