@@ -4,7 +4,7 @@
       <h1 class="text-h2 font-weight-light">Welcome to the Archive</h1>
       <h5 class="text-h5 font-weight-light pt-2">Clayton Ward</h5>
 
-      <div class="d-flex justify-space-around">
+      <div class="d-md-flex justify-space-around">
         <div class="pt-16">
           <donut-chart class="pt-2 pl-12"></donut-chart>
         </div>
