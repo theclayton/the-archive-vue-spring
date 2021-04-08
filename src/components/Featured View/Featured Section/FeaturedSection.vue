@@ -41,11 +41,7 @@ export default {
       { pos: 7, name: "Gimp", value: 7 },
     ],
     yearsChartData: 10,
-    donutChartData: [
-      { name: "Web", value: 15, color: "#814C4F" },
-      { name: "Mobile", value: 9, color: "#EED9B7" },
-      { name: "Other", value: 1, color: "#659CC8" },
-    ],
+
   }),
   components: {
     BarGraph,

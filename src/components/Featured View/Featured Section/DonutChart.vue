@@ -8,31 +8,54 @@
 <script>
 import { select } from "d3-selection";
 import { arc, pie } from "d3-shape";
-import axios from '../../../axios/axios';
+import axios from "../../../axios/axios";
 
 export default {
   data: () => ({
-    isLoading: true,
+    isLoadingCategories: true,
+    isLoadingProjects: true,
+    data: [],
+    colors: ["#814C4F", "#EED9B7", "#659CC8"],
     width: 500,
     height: 475,
     margin: 40,
-    projectCount: 0
+    projectCount: 0,
   }),
-  props: {
-    data: {
-      type: Array,
-    },
-  },
   mounted() {
+    this.getCategoriesCount();
     this.getProjectCount();
   },
   methods: {
-    async getProjectCount() {
-      const res = await axios.get('/projects/count')
-      this.projectCount = res.data;
+    async getCategoriesCount() {
+      try {
+        const res = await axios.get("/categories/count-each");
 
-      this.generateDonutGraph();
-      this.isLoading = false
+        let dataWithColor = [];
+        for (const i in res.data) {
+          dataWithColor.push({ ...res.data[i], color: this.colors[i] });
+        }
+        this.data = dataWithColor;
+
+      } catch (error) {
+        alert(error);
+        this.data = [
+          { name: "Web", value: 15, color: "#814C4F" },
+          { name: "Mobile", value: 9, color: "#EED9B7" },
+          { name: "Other", value: 1, color: "#659CC8" },
+        ];
+      }
+      if (!this.isLoadingProjects) this.generateDonutGraph();
+      this.isLoadingCategories = false;
+    },
+    async getProjectCount() {
+      try {
+        const res = await axios.get("/projects/count");
+        this.projectCount = res.data;
+      } catch (error) {
+        this.projectCount = 45;
+      }
+      if (!this.isLoadingCategories) this.generateDonutGraph();
+      this.isLoadingProjects = false;
     },
     generateDonutGraph() {
       const radius = Math.min(this.width, this.height) / 2 - this.margin;
