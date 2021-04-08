@@ -92,14 +92,6 @@ export default {
     },
   },
   methods: {
-    async getTechnologies() {
-      try {
-        const res = await axios.get("/projects/unique/technologies");
-        this.technologies = res.data.techs;
-      } catch (error) {
-        // pass
-      }
-    },
     async getProjects() {
       try {
         let res;
@@ -108,7 +100,7 @@ export default {
         } else {
           res = await axios.get(`/projects`);
         }
-        this.projects = res.data.projects;
+        this.projects = res.data;
         this.isLoading = false;
       } catch (error) {
         // pass
