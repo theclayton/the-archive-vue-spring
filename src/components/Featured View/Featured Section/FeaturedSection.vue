@@ -6,11 +6,11 @@
 
       <div class="d-flex justify-space-around">
         <div class="pt-16">
-          <donut-chart :data="donutChartData" :projectCount="projectCount" class="pt-2 pl-12"></donut-chart>
+          <donut-chart class="pt-2 pl-12"></donut-chart>
         </div>
 
         <div class="pt-16 pr-6">
-          <bar-graph :data="barGraphData" class="pt-5"></bar-graph>
+          <bar-graph class="pt-5"></bar-graph>
           <years-chart :data="yearsChartData" class="pt-15 pr-4"></years-chart>
         </div>
       </div>
@@ -31,17 +31,7 @@ import YearsChart from "./YearsChart.vue";
 
 export default {
   data: () => ({
-    barGraphData: [
-      { pos: 1, name: "HTML", value: 16 },
-      { pos: 2, name: "CSS", value: 16 },
-      { pos: 3, name: "JavaScript", value: 13 },
-      { pos: 4, name: "Swift", value: 8 },
-      { pos: 5, name: "Node", value: 8 },
-      { pos: 6, name: "MongoDB", value: 3 },
-      { pos: 7, name: "Gimp", value: 7 },
-    ],
     yearsChartData: 10,
-
   }),
   components: {
     BarGraph,

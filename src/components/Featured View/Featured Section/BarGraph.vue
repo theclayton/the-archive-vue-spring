@@ -7,23 +7,28 @@
 
 <script>
 import { select } from "d3-selection";
+import axios from '../../../axios/axios';
 
 export default {
   data: () => ({
+    data: [],
     width: 400,
     height: 200,
     margin: 40,
   }),
-  props: {
-    data: {
-      type: Array,
-    },
-  },
   mounted() {
-    this.d3Draw();
+    this.getData();
   },
-  computed: {},
   methods: {
+    async getData() {
+      try {
+        const res = await axios.get('/technologies/graph')
+        this.data = res.data
+      } catch (error) {
+        // pass
+      }
+      this.d3Draw();
+    },
     d3Draw() {
       let chart = select("#chart");
 
