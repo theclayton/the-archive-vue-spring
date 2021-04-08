@@ -138,11 +138,19 @@
             rounded
             x-large
             class="mr-3"
-            color="darkRed lighter--text"
+            color="light darkRed--text"
             v-if="!isLoading"
             :disabled="isLoading"
             @click="backClicked()"
           >CANCEL</v-btn>
+
+          <v-btn
+            rounded
+            x-large
+            class="mr-3"
+            color="darkRed lighter--text"
+            @click="deleteClick()"
+          >DELETE</v-btn>
 
           <v-progress-circular v-if="isLoading" indeterminate color="lighter"></v-progress-circular>
 
@@ -151,7 +159,7 @@
       </v-container>
     </v-card>
 
-    <v-snackbar v-model="snackbar">{{ snackbarMessage }}</v-snackbar>
+    <v-snackbar color="light" light v-model="snackbar">{{ snackbarMessage }}</v-snackbar>
   </div>
 </template>
 
@@ -240,6 +248,24 @@ export default {
         this.snackbar = true;
       }
 
+      this.isLoading = false;
+    },
+    async deleteClick() {
+      this.isLoading = true;
+      const confirmation = confirm("Conform deletion.");
+
+      if (confirmation === true) {
+        try {
+          await axios.delete(`/projects/${this.project._id}`);
+
+          router.push({ path: "/admin" });
+          this.snackbarMessage = "Success!";
+          this.snackbar = true;
+        } catch (error) {
+          this.snackbarMessage = "Error. Unable to save project.";
+          this.snackbar = true;
+        }
+      }
       this.isLoading = false;
     },
   },

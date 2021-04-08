@@ -37,6 +37,7 @@
               <tr>
                 <th class="text-left lighter--text">_id</th>
                 <th class="text-left lighter--text">Title</th>
+                <th class="text-left lighter--text">Category</th>
                 <th class="text-left lighter--text">Date</th>
               </tr>
             </thead>
@@ -49,6 +50,7 @@
               >
                 <td class="light--text">{{ project._id }}</td>
                 <td class="light--text">{{ project.title }}</td>
+                <td class="light--text">{{ project.categories.name }}</td>
                 <td class="light--text">{{ project.dateCreated }}</td>
               </tr>
             </tbody>
@@ -87,7 +89,7 @@ export default {
       if (!this.newProjectTitle) return;
 
       try {
-        await axios.post("/projects/create", { title: this.newProjectTitle });
+        await axios.post("/projects/create", { title: this.newProjectTitle, categories: { _id: 1 }});
         this.getProjects();
       } catch (error) {
         alert("Unable to create project." + error);
