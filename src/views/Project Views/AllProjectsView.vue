@@ -14,6 +14,7 @@
         <technologies-bar class="pt-4 pb-9"></technologies-bar>
 
         <v-select
+          v-model="selectedSorted"
           class="mb-8 mx-5"
           :items="filterItems"
           label="SORT BY"
@@ -44,7 +45,7 @@
 </template>
 
 <script>
-import axios from '../../axios/axios'
+import axios from "../../axios/axios";
 import ProjectCard from "../../components/Project/Project Card/ProjectCard.vue";
 import CategoriesBar from "../../components/Search/CategoriesBar.vue";
 import TechnologiesBar from "../../components/Search/TechnologiesBar.vue";
@@ -52,6 +53,7 @@ import TechnologiesBar from "../../components/Search/TechnologiesBar.vue";
 export default {
   data: () => ({
     isLoading: true,
+    selectedSorted: "",
     filterItems: ["SORT BY DATE", "ALPHABETICAL ORDER"],
     categories: ["WEB", "MOBILE", "STAND-ALONE", "EMBEDDED"],
     projects: [
@@ -99,15 +101,37 @@ export default {
 
     this.getProjects();
   },
+  watch: {
+    selectedSorted: function() {
+      if (this.selectedSorted === this.filterItems[0]) {
+        this.sortByDate();
+      } else if (this.selectedSorted === this.filterItems[0]) {
+        this.sortByName();
+      }
+    },
+  },
   methods: {
     async getProjects() {
       try {
         let res = await axios.get(`/projects`);
         this.projects = res.data;
-        this.isLoading = false;
+        this.sortByDate();
       } catch (error) {
         // pass
       }
+    },
+    filterSelected(selection) {
+      alert(selection);
+    },
+    sortByName() {
+      this.isLoading = true;
+      this.projects.sort((a, b) => b.title - a.title);
+      this.isLoading = false;
+    },
+    sortByDate() {
+      this.isLoading = true;
+      this.projects.sort((a, b) => a.dateCreated - b.dateCreated);
+      this.isLoading = false;
     },
   },
 };
