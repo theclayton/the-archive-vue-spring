@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1 class="text-h6 font-weight-light">Categories</h1>
+    <v-progress-circular class="mt-5" v-if="isLoading" :width="10" size="275" color="light" indeterminate></v-progress-circular>
     <div id="donutChart"></div>
   </div>
 </template>
@@ -12,6 +13,7 @@ import axios from "../../../axios/axios";
 
 export default {
   data: () => ({
+    isLoading: true,
     isLoadingCategories: true,
     isLoadingProjects: true,
     data: [],
@@ -31,7 +33,7 @@ export default {
       const windowWidth = window.innerWidth;
       if (windowWidth >= 350 && windowWidth <= 600) {
         this.width = 300;
-        this.height = 275
+        this.height = 275;
       }
     },
     async getCategoriesCount() {
@@ -43,7 +45,6 @@ export default {
           dataWithColor.push({ ...res.data[i], color: this.colors[i] });
         }
         this.data = dataWithColor;
-
       } catch (error) {
         alert(error);
         this.data = [
@@ -72,7 +73,7 @@ export default {
         .append("svg")
         .attr("width", this.width)
         .attr("height", this.height)
-                .attr("max-width", this.width)
+        .attr("max-width", this.width)
         .attr("max-width", this.width)
 
         .append("g")
@@ -161,6 +162,8 @@ export default {
         .attr("font-weight", "lighter")
         .style("fill", "#EED9B7")
         .attr("transform", "translate(" + -36 + "," + 43 + ")");
+
+      this.isLoading = false;
     },
   },
 };

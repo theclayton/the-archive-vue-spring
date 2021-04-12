@@ -1,16 +1,18 @@
 <template>
   <div>
     <h1 class="text-h6 font-weight-light">Technologies</h1>
+    <v-skeleton-loader class="rounded-xl mt-5" v-if="isLoading" type="image" width="400"></v-skeleton-loader>
     <div id="chart"></div>
   </div>
 </template>
 
 <script>
 import { select } from "d3-selection";
-import axios from '../../../axios/axios';
+import axios from "../../../axios/axios";
 
 export default {
   data: () => ({
+    isLoading: true,
     data: [],
     width: 400,
     height: 200,
@@ -22,8 +24,8 @@ export default {
   methods: {
     async getData() {
       try {
-        const res = await axios.get('/technologies/graph')
-        this.data = res.data
+        const res = await axios.get("/technologies/graph");
+        this.data = res.data;
       } catch (error) {
         // pass
       }
@@ -70,6 +72,8 @@ export default {
           return "translate(" + -15 + "," + pt + ")";
         })
         .style("text-anchor", "end");
+
+      this.isLoading = false;
     },
   },
 };

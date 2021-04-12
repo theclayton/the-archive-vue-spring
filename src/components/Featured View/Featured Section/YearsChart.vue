@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="text-h1">{{ data }}</h1>
-    <p>years of development and counting</p>
+    <p>years of development experience</p>
   </div>
 </template>
 
