@@ -102,10 +102,10 @@ export default {
     this.getProjects();
   },
   watch: {
-    selectedSorted: function() {
+    selectedSorted: function () {
       if (this.selectedSorted === this.filterItems[0]) {
         this.sortByDate();
-      } else if (this.selectedSorted === this.filterItems[0]) {
+      } else if (this.selectedSorted === this.filterItems[1]) {
         this.sortByName();
       }
     },
@@ -125,12 +125,18 @@ export default {
     },
     sortByName() {
       this.isLoading = true;
-      this.projects.sort((a, b) => b.title - a.title);
+      this.projects.sort((a, b) => {
+        if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
+        if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
+        return 0;
+      });
       this.isLoading = false;
     },
     sortByDate() {
       this.isLoading = true;
-      this.projects.sort((a, b) => a.dateCreated - b.dateCreated);
+      this.projects.sort(function (a, b) {
+        return new Date(b.dateCreated) - new Date(a.dateCreated);
+      });
       this.isLoading = false;
     },
   },

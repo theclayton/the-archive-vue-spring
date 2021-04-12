@@ -28,7 +28,7 @@
             </v-list-item-icon>
             <v-list-item-title class="light--text">Logout</v-list-item-title>
           </v-list-item>
-          <v-list-item link to="/admin-panel" :disabled="!isLoggedIn">
+          <v-list-item link to="/admin" :disabled="!isLoggedIn">
             <v-list-item-icon>
               <v-icon color="lighter">mdi-account-lock</v-icon>
             </v-list-item-icon>
