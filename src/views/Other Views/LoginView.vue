@@ -2,7 +2,6 @@
   <div>
     <v-card color="dark" class="mx-5 mb-15 text-center">
       <v-container fluid>
-
         <v-form v-model="valid">
           <v-row justify-sm="center">
             <v-col sm="5">
@@ -71,7 +70,6 @@
             </v-col>
           </v-row>
         </v-form>
-
       </v-container>
     </v-card>
   </div>
@@ -92,7 +90,7 @@ export default {
     password: "",
     rules: {
       required: (value) => !!value || "Required.",
-      min: (v) => v.length >= 8 || "Min 8 characters",
+      min: (v) => v.length >= 6 || "Min 6 characters",
     },
   }),
   methods: {
@@ -109,19 +107,21 @@ export default {
         this.isLoading = true;
         this.showError = false;
 
-        const loginCreds = { email: this.username, password: this.password };
-        const res = await axios.post("/auth/login", loginCreds);
+        await axios.get("/login", {
+          auth: {
+            username: this.username,
+            password: this.password,
+          },
+        });
 
         this.$store.dispatch({
           type: "login",
           username: this.username,
-          token: res.data.token,
-          expiresIn: res.data.expiresIn,
-          authLevel: res.data.authLevel,
+          password: this.password,
         });
 
         this.isLoading = false;
-        router.push({ path: "/admin-panel" });
+        router.push({ path: "/admin" });
       } catch (error) {
         this.showError = true;
         this.errorText = "Error signing in.";
@@ -129,8 +129,8 @@ export default {
       }
     },
   },
-    mounted() {
-    window.scrollTo(0,0)
+  mounted() {
+    window.scrollTo(0, 0);
   },
 };
 </script>
