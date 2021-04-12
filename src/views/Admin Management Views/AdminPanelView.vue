@@ -29,6 +29,25 @@
         </v-row>
         <v-divider dark class="mt-8 mb-9"></v-divider>
 
+        <h4 class="text-h4 light--text font-weight-light mt-10 mb-4">Users</h4>
+
+        <v-simple-table dark>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th class="text-left lighter--text">_id</th>
+                <th class="text-left lighter--text">Username</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="user in users" :key="user._id">
+                <td class="light--text">{{ user._id }}</td>
+                <td class="light--text">{{ user.username }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+
         <h4 class="text-h4 light--text font-weight-light mt-10 mb-4">Projects</h4>
 
         <v-simple-table dark>
@@ -68,14 +87,38 @@ import router from "../../router/index";
 export default {
   data: () => ({
     projects: [],
+    users: [],
     newProjectTitle: "",
   }),
   mounted() {
     window.scrollTo(0, 0);
 
     this.getProjects();
+    this.getUsers();
   },
   methods: {
+    async createProject() {
+      if (!this.newProjectTitle) return;
+
+      try {
+        await axios.post("/projects/create", {
+          title: this.newProjectTitle,
+          categories: { _id: 1 },
+        });
+        this.getProjects();
+      } catch (error) {
+        alert("Unable to create project." + error);
+      }
+    },
+    async getUsers() {
+      try {
+        let res = await axios.get(`/users`);
+        this.users = res.data;
+        this.isLoading = false;
+      } catch (error) {
+        // pass
+      }
+    },
     async getProjects() {
       try {
         let res = await axios.get(`/projects`);
@@ -83,16 +126,6 @@ export default {
         this.isLoading = false;
       } catch (error) {
         // pass
-      }
-    },
-    async createProject() {
-      if (!this.newProjectTitle) return;
-
-      try {
-        await axios.post("/projects/create", { title: this.newProjectTitle, categories: { _id: 1 }});
-        this.getProjects();
-      } catch (error) {
-        alert("Unable to create project." + error);
       }
     },
     projectClick(project) {
