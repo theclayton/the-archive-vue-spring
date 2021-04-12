@@ -94,7 +94,12 @@ export default {
     },
     async createLink() {
       try {
-        await axios.post('/links/project/create', { name: this.newLinkName, url: this.newLinkUrl, projectId: this.projectID})
+        await axios.post('/links/project/create', { name: this.newLinkName, url: this.newLinkUrl, projectId: this.projectID}, {
+          auth: {
+            username: this.$store.getters.getUsername,
+            password: this.$store.getters.getPassword,
+          },
+        })
         this.dialog = false
       } catch (error) {
         // pass
@@ -102,7 +107,12 @@ export default {
     },
     async removelink(id, index) {
       try {
-        await axios.delete(`/links/project/${id}`)
+        await axios.delete(`/links/project/delete/${id}`, {
+          auth: {
+            username: this.$store.getters.getUsername,
+            password: this.$store.getters.getPassword,
+          },
+        })
         this.links.splice(index, 1);
       } catch (error) {
         // pass

@@ -119,7 +119,12 @@ export default {
     },
     async addTechnology(id) {
       try {
-        await axios.post('/technologies/project/create', { projectId: this.projectID, technologies: { _id: id }})
+        await axios.post('/technologies/project/create', { projectId: this.projectID, technologies: { _id: id }}, {
+          auth: {
+            username: this.$store.getters.getUsername,
+            password: this.$store.getters.getPassword,
+          },
+        })
         this.getTechnolgies();
       } catch (error) {
         // pass
@@ -127,7 +132,12 @@ export default {
     },
     async removeTechnology(id, index) {
       try {
-        await axios.delete(`/technologies/project/${id}`)
+        await axios.delete(`/technologies/project/delete/${id}`, {
+          auth: {
+            username: this.$store.getters.getUsername,
+            password: this.$store.getters.getPassword,
+          },
+        })
         this.technologies.splice(index, 1);
       } catch {
         // pass
@@ -135,7 +145,12 @@ export default {
     },
     async createTechnology() {
       try {
-        await axios.post('/technologies/create', { name: this.newTechnologyName, src: this.newTechnologySrc })
+        await axios.post('/technologies/create', { name: this.newTechnologyName, src: this.newTechnologySrc }, {
+          auth: {
+            username: this.$store.getters.getUsername,
+            password: this.$store.getters.getPassword,
+          },
+        })
         this.getAllTechnologies();
         this.dialog = false;
       } catch {

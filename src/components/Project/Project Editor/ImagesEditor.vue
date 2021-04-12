@@ -128,6 +128,11 @@ export default {
       try {
         await axios.post("/images/project/create", {
           projectId: this.projectID,
+        }, {
+          auth: {
+            username: this.$store.getters.getUsername,
+            password: this.$store.getters.getPassword,
+          },
         });
       } catch (error) {
         // pass
@@ -136,7 +141,12 @@ export default {
     },
     async removeImage(index, id) {
       try {
-        await axios.delete(`/images/project/${id}`);
+        await axios.delete(`/images/project/delete/${id}`, {
+          auth: {
+            username: this.$store.getters.getUsername,
+            password: this.$store.getters.getPassword,
+          },
+        });
         this.images.splice(index, 1);
       } catch (error) {
         // pass
@@ -145,7 +155,12 @@ export default {
     async saveImage(image) {
       this.isLoading = true;
       try {
-        await axios.put("/images/project", image);
+        await axios.put("/images/project", image, {
+          auth: {
+            username: this.$store.getters.getUsername,
+            password: this.$store.getters.getPassword,
+          },
+        });
       } catch (error) {
         // pass
       }

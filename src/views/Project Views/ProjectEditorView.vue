@@ -238,7 +238,12 @@ export default {
       this.isLoading = true;
 
       try {
-        await axios.put("/projects", this.project);
+        await axios.put("/projects/update", this.project, {
+          auth: {
+            username: this.$store.getters.getUsername,
+            password: this.$store.getters.getPassword,
+          },
+        });
 
         router.push({ path: `/edit/project/${this.project._id}` });
         this.snackbarMessage = "Success!";
@@ -256,7 +261,12 @@ export default {
 
       if (confirmation === true) {
         try {
-          await axios.delete(`/projects/${this.project._id}`);
+          await axios.delete(`/projects/delete/${this.project._id}`, {
+          auth: {
+            username: this.$store.getters.getUsername,
+            password: this.$store.getters.getPassword,
+          },
+        });
 
           router.push({ path: "/admin" });
           this.snackbarMessage = "Success!";

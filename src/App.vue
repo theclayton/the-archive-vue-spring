@@ -21,24 +21,6 @@ export default {
     Footer,
     TopNav,
   },
-  methods: {
-    autoLogin() {
-      const expirationTime = new Date(this.expiration).getTime();
-      const now = new Date().getTime();
-
-      if (expirationTime > now) {
-        this.$store.dispatch("autoLogin");
-      }
-    },
-  },
-  computed: {
-    expiration() {
-      return this.$store.getters.getExpiration;
-    },
-  },
-  beforeMount() {
-    this.autoLogin();
-  },
 };
 </script>
 

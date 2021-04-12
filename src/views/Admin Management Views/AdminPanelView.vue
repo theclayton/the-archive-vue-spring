@@ -101,10 +101,19 @@ export default {
       if (!this.newProjectTitle) return;
 
       try {
-        await axios.post("/projects/create", {
-          title: this.newProjectTitle,
-          categories: { _id: 1 },
-        });
+        await axios.post(
+          "/projects/create",
+          {
+            title: this.newProjectTitle,
+            categories: { _id: 1 },
+          },
+          {
+            auth: {
+              username: this.$store.getters.getUsername,
+              password: this.$store.getters.getPassword,
+            },
+          }
+        );
         this.getProjects();
       } catch (error) {
         alert("Unable to create project." + error);
@@ -112,7 +121,12 @@ export default {
     },
     async getUsers() {
       try {
-        let res = await axios.get(`/users`);
+        let res = await axios.get(`/users`, {
+          auth: {
+            username: this.$store.getters.getUsername,
+            password: this.$store.getters.getPassword,
+          },
+        });
         this.users = res.data;
         this.isLoading = false;
       } catch (error) {

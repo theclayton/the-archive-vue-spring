@@ -7,11 +7,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const instance = axios.create({
-  baseURL: BASE_URL,
-  auth: {
-    username: "",
-    password: ""
-  }
+  baseURL: BASE_URL
 });
 
 export default instance;
