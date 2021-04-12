@@ -4,7 +4,7 @@
       <v-btn
         v-for="link in links"
         :key="link.name"
-        class="my-4"
+        class="my-4 d-none d-sm-flex"
         color="light"
         text
         rounded

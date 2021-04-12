@@ -22,10 +22,18 @@ export default {
     projectCount: 0,
   }),
   mounted() {
+    this.calculateSize();
     this.getCategoriesCount();
     this.getProjectCount();
   },
   methods: {
+    calculateSize() {
+      const windowWidth = window.innerWidth;
+      if (windowWidth >= 350 && windowWidth <= 600) {
+        this.width = 300;
+        this.height = 275
+      }
+    },
     async getCategoriesCount() {
       try {
         const res = await axios.get("/categories/count-each");
@@ -64,6 +72,9 @@ export default {
         .append("svg")
         .attr("width", this.width)
         .attr("height", this.height)
+                .attr("max-width", this.width)
+        .attr("max-width", this.width)
+
         .append("g")
         .attr(
           "transform",

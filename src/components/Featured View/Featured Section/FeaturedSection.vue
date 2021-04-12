@@ -1,25 +1,46 @@
 <template>
   <v-card class="mx-5 pt-9 light--text text-center" color="dark">
     <v-container>
-      <h1 class="text-h2 font-weight-light">Welcome to the Archive</h1>
-      <h5 class="text-h5 font-weight-light pt-2">Clayton Ward</h5>
+      <h1 class="text-h2 font-weight-light d-none d-lg-flex justify-center">Welcome to the Archive</h1>
+      <h5 class="text-h5 font-weight-light pt-2 d-none d-lg-flex justify-center">Clayton Ward</h5>
 
-      <div class="d-md-flex justify-space-around">
+      <h1 class="text-h5 lighter--text d-flex d-lg-none justify-center">Welcome to the Archive</h1>
+      <h5 class="text-body-1 font-weight-light pt-2 d-flex d-lg-none justify-center">Clayton Ward</h5>
+
+      <v-divider dark class="mt-10 d-flex d-lg-none"></v-divider>
+
+      <div class="d-lg-flex justify-space-around pb-3">
         <div class="pt-16">
-          <donut-chart class="pt-2 pl-12"></donut-chart>
+          <donut-chart class="pt-2"></donut-chart>
         </div>
 
-        <div class="pt-16 pr-6">
+        <div class="pr-6">
+          <v-spacer class="pt-16 d-none d-sm-flex"></v-spacer>
           <bar-graph class="pt-5"></bar-graph>
-          <years-chart :data="yearsChartData" class="pt-15 pr-4"></years-chart>
+          <years-chart :data="yearsChartData" class="pt-15 px-4"></years-chart>
         </div>
       </div>
 
-    <div class="mt-5">      
-      <v-btn rounded x-large color="darkRed lighter--text" class="mr-5 mb-15" link to="/projects">View All Projects</v-btn>
-      <v-btn rounded x-large color="lighterOrange dark--text" class="ml-5 mb-15" link to="/search">Find a project</v-btn>
-    </div>
+      <v-divider dark class="mt-7 mb-12 d-flex d-lg-none"></v-divider>
 
+      <div class="mt-1 mb-11">
+        <v-btn
+          rounded
+          x-large
+          color="darkRed lighter--text"
+          class="mx-5 my-4"
+          link
+          to="/projects"
+        >View All Projects</v-btn>
+        <v-btn
+          rounded
+          x-large
+          color="lighterOrange dark--text"
+          class="mx-5 my-4"
+          link
+          to="/search"
+        >Find a project</v-btn>
+      </div>
     </v-container>
   </v-card>
 </template>

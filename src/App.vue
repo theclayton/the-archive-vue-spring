@@ -4,7 +4,7 @@
       <top-nav class="padding-nav-drawer"></top-nav>
       <nav-drawer></nav-drawer>
       <router-view class="padding-nav-drawer" />
-      <Footer></Footer>
+      <Footer class="padding-nav-drawer"></Footer>
     </div>
   </v-app>
 </template>
