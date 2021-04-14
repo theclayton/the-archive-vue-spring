@@ -1,24 +1,19 @@
-# the-archive-vue-spring
+# The Archive Vue
+#### Vue front end for accessing a Spring Boot Web backend
 
-## Project setup
-```
-npm install
-```
+Check it out by [visiting the live site here](https://archive-vue.flaresoftware.com/).
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+This repository contains the front end source for the Archive Vue. I develped it 
+using Vue 2 along with Vuetify, Vue router, and Vuex. It is designed with a 
+beautiful dark theme, including skeleton loaders, graphical charts created with 
+D3, and modern UI components. 
 
-### Compiles and minifies for production
-```
-npm run build
-```
+The site contains an admin panel for quickly and easily creating, editing and 
+deleting projects. These back end endpoints are protected with basic authentication.
 
-### Lints and fixes files
-```
-npm run lint
-```
+The back end was creating using Spring Boot along with Spring Web, Data and 
+Security. I used JDBC to connect to a MySQL database containing data for the projects,
+tehcnologies, users, etc. Graphics are pulled from an AWS S3 Bucket. An image uploading 
+functionality may be added in the future. The repository for the back end is currently private.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Thank you for viewing The Archive!
