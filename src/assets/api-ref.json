@@ -1,0 +1,172 @@
+[
+    {
+        "sectionName": "Projects",
+        "endpoints": [
+            {
+                "method": "GET",
+                "endpoint": "/projects",
+                "description": "Result is an array of JSON objects containing all projects found in the database."
+            },
+            {
+                "method": "GET",
+                "endpoint": "/projects/:id",
+                "description": "Result is a JSON object containing the project if found in the database."
+            },
+            {
+                "method": "POST",
+                "endpoint": "/projects/create",
+                "description": "Basic auth. Creates a new blank project containing the project name. Req body: JSON object with title."
+            },
+            {
+                "method": "PUT",
+                "endpoint": "/projects/update",
+                "description": "Basic auth. Updates a project. Req body: JSON object with _id, title, subtitle, thumbnail, prev_src, featured, description, dateCreated, categories"
+            },
+            {
+                "method": "DELETE",
+                "endpoint": "/projects/delete/:id",
+                "description": "Deletes a project by id provided as path parameter."
+            },
+            {
+                "method": "GET",
+                "endpoint": "/projects/count",
+                "description": "Gets the total count of projects in the database."
+            },
+            {
+                "method": "GET",
+                "endpoint": "/projects/featured",
+                "description": "Gets the featured projects."
+            }   
+        ]
+    },
+    {
+        "sectionName": "Categories",
+        "endpoints": [
+            {
+                "method": "GET",
+                "endpoint": "/categories",
+                "description": "Gets JSON array of objects containing category id and name."
+            },
+            {
+                "method": "POST",
+                "endpoint": "/categories/create",
+                "description": "Basic auth. Creates a new category. Req body: JSON object containing name."
+            },
+            {
+                "method": "GET",
+                "endpoint": "/categories/count-each",
+                "description": "Gets number of projects for each category."
+            }
+        ]
+    },
+    {
+        "sectionName": "Technologies",
+        "endpoints": [
+            {
+                "method": "GET",
+                "endpoint": "/technologies",
+                "description": "Gets JSON array of all tehcnologies found in database."
+            },
+            {
+                "method": "GET",
+                "endpoint": "/technologies/project/:id",
+                "description": "Gets JSON array of all tehcnologies found for project id indicated in path parameter."
+            },
+            {
+                "method": "GET",
+                "endpoint": "/technologies/project/create",
+                "description": "Basic auth. Adds a technology to a project. Req body: JSON object with projectId, technologies."
+            },
+            {
+                "method": "POST",
+                "endpoint": "/technologies/project/create",
+                "description": "Basic auth. Creates new technology. Req body: JSON object with projectId, technologies."
+            },
+            {
+                "method": "DELETE",
+                "endpoint": "/technologies/project/delete/:id",
+                "description": "Basic auth. Removes a technology from a project based on the tech_proj id in the path parameter."
+            },
+            {
+                "method": "GET",
+                "endpoint": "/technologies/graph",
+                "description": "Gets the project count for each technology."
+            }
+        ]
+    },
+    {
+        "sectionName": "Links",
+        "endpoints": [
+            {
+                "method": "GET",
+                "endpoint": "/links/project/:id",
+                "description": "Gets a JSON array of link objects for the project id in the path parameter."
+            },
+            {
+                "method": "POST",
+                "endpoint": "/links/project/create",
+                "description": "Basic auth. Adds a link to a project. Req body: JSON object with name, url, projectId."
+            },
+            {
+                "method": "DELETE",
+                "endpoint": "/links/project/delete/:id",
+                "description": "Basic auth. Deletes a link from a project based on the link id in the path parameter."
+            }
+        ]
+    },
+    {
+        "sectionName": "Images",
+        "endpoints": [
+            {
+                "method": "GET",
+                "endpoint": "/images/project/:id",
+                "description": "Gets all the images for the project withn the id in the path parameter."
+            },
+            {
+                "method": "POST",
+                "endpoint": "/images/project/create",
+                "description": "Basic auth. Adds a new image to a project. Req body: JSON object with projectId."
+            },
+            {
+                "method": "PUT",
+                "endpoint": "/images/project",
+                "description": "Basic auth. Modify a image. Req body: JSON object with _id, name, src, caption, height, width, projectId."
+            },
+            {
+                "method": "DELETE",
+                "endpoint": "/images/project/delete/:id",
+                "description": "Basic auth. Deletes an image by its' id path parameter."
+            }
+        ]
+    },
+    {
+        "sectionName": "Search",
+        "endpoints": [
+            {
+                "method": "GET",
+                "endpoint": "/search?terms=:terms",
+                "description": "Returns projects based on the query from the query parameters."
+            }
+        ]
+    },
+    {
+        "sectionName": "Authentication",
+        "endpoints": [
+            {
+                "method": "GET",
+                "endpoint": "/login",
+                "description": "Test to see if the basic authentication credentials are correct."
+            }
+        ]
+    },
+    {
+        "sectionName": "Users",
+        "endpoints": [
+            {
+                "method": "GET",
+                "endpoint": "/users",
+                "description": "Gets a JSON array of all the users found in the database."
+            }
+        ]
+    }
+]
