@@ -11,7 +11,7 @@ D3, and modern UI components.
 The site contains an admin panel for quickly and easily creating, editing and 
 deleting projects. These back end endpoints are protected with basic authentication.
 
-The back end was creating using Spring Boot along with Spring Web, Data and 
+The back end was creating using Java with the Spring Boot framework along with Spring Web, Data and 
 Security. I used JDBC to connect to a MySQL database containing data for the projects,
 tehcnologies, users, etc. Graphics are pulled from an AWS S3 Bucket. An image uploading 
 functionality may be added in the future. The repository for the back end is currently private.
