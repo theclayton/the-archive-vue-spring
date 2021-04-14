@@ -3,7 +3,7 @@
 
 Check it out by [visiting the live site here](https://archive-vue.flaresoftware.com/).
 
-This repository contains the front end source for the Archive Vue. I develped it 
+This repository contains the front end source for the Archive Vue. I developed it 
 using Vue 2 along with Vuetify, Vue router, and Vuex. It is designed with a 
 beautiful dark theme, including skeleton loaders, graphical charts created with 
 D3, and modern UI components. 
