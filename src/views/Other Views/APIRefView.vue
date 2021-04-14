@@ -46,7 +46,7 @@ export default {
   computed: {
     baseURL: () => {
       if (process.env.NODE_ENV === "production") {
-        return "https://api-archive.flaresoftware.com/api";
+        return "https://archive-spring.herokuapp.com/api";
       } else {
         return "http://localhost:3500/api";
       }
