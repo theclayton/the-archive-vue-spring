@@ -5,6 +5,7 @@ import AdminPanelView from '../views/Admin Management Views/AdminPanelView.vue'
 
 import APIRefView from '../views/Other Views/APIRefView.vue'
 import LoginView from '../views/Other Views/LoginView.vue'
+import ResumeView from '../views/Other Views/ResumeView.vue'
 
 import AllProjectsView from '../views/Project Views/AllProjectsView.vue'
 import FeaturedView from '../views/Project Views/FeaturedView.vue'
@@ -37,6 +38,12 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: LoginView,
+    exact: true
+  },
+  {
+    path: '/resume',
+    name: 'Resume',
+    component: ResumeView,
     exact: true
   },
   {
