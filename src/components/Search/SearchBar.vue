@@ -8,6 +8,7 @@
       clearable
       single-line
       dark
+      @keyup.enter="findProjects(searchTerm)"
     ></v-text-field>
 
     <v-btn
@@ -15,7 +16,8 @@
       x-large
       color="lighterOrange dark--text"
       @click="findProjects(searchTerm)"
-    >Search</v-btn>
+      >Search</v-btn
+    >
   </div>
 </template>
 
@@ -24,12 +26,13 @@ import router from "../../router/index";
 
 export default {
   props: {
-      searchTerm: {
-          type: String
-      }
+    searchTerm: {
+      type: String,
+    },
   },
   methods: {
     findProjects(terms) {
+      if (!terms) terms = "";
       router.push(`/search?terms=${terms}`);
     },
   },

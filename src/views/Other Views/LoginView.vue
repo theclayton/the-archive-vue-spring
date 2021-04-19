@@ -22,6 +22,7 @@
                 clearable
                 required
                 dark
+                @keyup.enter="submitForm()"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -42,6 +43,7 @@
                 rounded
                 required
                 dark
+                @keyup.enter="submitForm()"
               ></v-text-field>
             </v-col>
           </v-row>
