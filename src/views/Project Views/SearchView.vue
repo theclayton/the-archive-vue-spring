@@ -6,7 +6,7 @@
 
         <categories-bar class="mb-4"></categories-bar>
 
-        <v-divider dark></v-divider>
+        <v-divider dark class="pb-8"></v-divider>
 
         <technologies-bar class="pt-4 pb-9"></technologies-bar>
 

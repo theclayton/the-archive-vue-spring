@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-space-around">
+  <div class="d-none d-sm-flex justify-space-around">
     <v-tooltip bottom v-for="(technology, i) in technologies" :key="i">
       <template v-slot:activator="{ on, attrs }">
         <a @click="findProjects(technology.name)">

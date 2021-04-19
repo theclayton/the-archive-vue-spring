@@ -10,8 +10,12 @@
       </v-row>
 
       <v-container>
-        <h1 class="text-h2 font-weight-light light--text pb-1">{{ project.title }}</h1>
-        <h4 class="text-h5 font-weight-light light--text pb-1">{{ project.subtitle }}</h4>
+        <h1 class="text-h2 font-weight-light light--text d-none d-lg-flex pb-1">{{ project.title }}</h1>
+        <h1 class="text-h5 font-weight-light lighter--text d-flex d-lg-none pt-1 pb-1">{{ project.title }}</h1>
+
+        <h4 class="text-h5 font-weight-light light--text d-none d-lg-flex pb-1">{{ project.subtitle }}</h4>
+        <h4 class="text-body-1 light--text d-flex d-lg-none pb-6">{{ project.subtitle }}</h4>
+
         <p class="text-body-1 lightOrange--text pb-6">{{ project.dateCreated }}</p>
 
         <v-divider dark></v-divider>

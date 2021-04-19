@@ -1,23 +1,23 @@
 <template>
-  <v-card class="mx-5 pt-9 light--text text-center" color="dark">
+  <v-card class="mx-5 light--text text-center" color="dark">
     <v-container>
-      <h1 class="text-h2 font-weight-light d-none d-lg-flex justify-center">Welcome to the Archive</h1>
+      <h1 class="text-h2 font-weight-light d-none d-lg-flex justify-center pt-9">Welcome to the Archive</h1>
       <h5 class="text-h5 font-weight-light pt-2 d-none d-lg-flex justify-center">Clayton Ward</h5>
 
-      <h1 class="text-h5 lighter--text d-flex d-lg-none justify-center">Welcome to the Archive</h1>
+      <h1 class="text-h5 lighter--text d-flex d-lg-none justify-center pt-5">Welcome to the Archive</h1>
       <h5 class="text-body-1 font-weight-light pt-2 d-flex d-lg-none justify-center">Clayton Ward</h5>
 
-      <v-divider dark class="mt-10 d-flex d-lg-none"></v-divider>
-
       <div class="d-lg-flex justify-space-around pb-3">
-        <div class="pt-16">
+        <div class="pt-4">
+        <v-spacer class="pt-14 d-none d-lg-flex"></v-spacer>
           <donut-chart class="pt-2"></donut-chart>
         </div>
 
         <div class="pr-6">
           <v-spacer class="pt-16 d-none d-sm-flex"></v-spacer>
-          <bar-graph class="pt-5"></bar-graph>
-          <years-chart :data="yearsChartData" class="pt-15 px-4"></years-chart>
+          <v-spacer class="pt-5 d-none d-sm-flex"></v-spacer>
+          <bar-graph></bar-graph>
+          <years-chart :data="yearsChartData" class="pt-16 px-4"></years-chart>
         </div>
       </div>
 

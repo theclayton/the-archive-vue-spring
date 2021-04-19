@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-h6 font-weight-light">Categories</h1>
+    <h1 class="text-h6 font-weight-light d-none d-lg-flex justify-center">Categories</h1>
     <v-progress-circular class="mt-5" v-if="isLoading" :width="10" size="275" color="light" indeterminate></v-progress-circular>
     <div id="donutChart"></div>
   </div>
@@ -21,6 +21,12 @@ export default {
     width: 500,
     height: 475,
     margin: 40,
+    thicknessRatio: 1,
+    projectCountFontSize: 77,
+    projectCountPaddingRight: -44,
+    projectCountPaddingTop: 14,
+    projectsLabelPaddingRight: -36,
+    projectsLabelPaddingTop: 43,
     projectCount: 0,
   }),
   mounted() {
@@ -34,6 +40,12 @@ export default {
       if (windowWidth >= 350 && windowWidth <= 600) {
         this.width = 300;
         this.height = 275;
+        this.thicknessRatio = 1.065;
+        this.projectCountFontSize = 57;
+        this.projectCountPaddingRight = -34;
+        this.projectCountPaddingTop = 9;
+        this.projectsLabelPaddingRight = -31
+        this.projectsLabelPaddingTop = 35
       }
     },
     async getCategoriesCount() {
@@ -61,7 +73,7 @@ export default {
         const res = await axios.get("/projects/count");
         this.projectCount = res.data;
       } catch (error) {
-        this.projectCount = 45;
+        this.projectCount = '???';
       }
       if (!this.isLoadingCategories) this.generateDonutGraph();
       this.isLoadingProjects = false;
@@ -90,7 +102,7 @@ export default {
 
       const inner = arc()
         .innerRadius(radius * 0.67)
-        .outerRadius(radius * 0.78);
+        .outerRadius(radius * 0.78 * this.thicknessRatio);
 
       const outer = arc()
         .innerRadius(radius * 0.9)
@@ -150,10 +162,10 @@ export default {
       svg
         .append("text")
         .text(this.projectCount)
-        .attr("font-size", "77px")
+        .attr("font-size", this.projectCountFontSize + "px")
         .attr("font-weight", "lighter")
         .style("fill", "#EFEAE1")
-        .attr("transform", "translate(" + -44 + "," + 14 + ")");
+        .attr("transform", "translate(" + this.projectCountPaddingRight + "," + this.projectCountPaddingTop + ")");
 
       svg
         .append("text")
@@ -161,7 +173,7 @@ export default {
         .attr("font-size", "20px")
         .attr("font-weight", "lighter")
         .style("fill", "#EED9B7")
-        .attr("transform", "translate(" + -36 + "," + 43 + ")");
+        .attr("transform", "translate(" + this.projectsLabelPaddingRight + "," + this.projectsLabelPaddingTop + ")");
 
       this.isLoading = false;
     },

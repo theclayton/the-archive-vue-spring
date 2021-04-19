@@ -2,14 +2,14 @@
   <div>
     <v-card color="dark" class="mx-5 mb-5">
       <v-container class="pb-15">
-        <h1 class="text-h3 light--text font-weight-light text-center pt-7 pb-9">All Projects</h1>
+        <h1 class="text-h3 light--text font-weight-light text-center pt-7 pb-10">All Projects</h1>
 
-        <v-row class="pb-7 justify-center">
-          <v-btn text color="lighterOrange">Categories:</v-btn>
-          <categories-bar></categories-bar>
+        <v-row class="pb-9 justify-center">
+          <v-btn text color="lighterOrange" class="d-none d-lg-flex">Categories:</v-btn>
+          <categories-bar class="text-center"></categories-bar>
         </v-row>
 
-        <v-divider></v-divider>
+        <v-divider dark class="pb-8"></v-divider>
 
         <technologies-bar class="pt-4 pb-9"></technologies-bar>
 

@@ -7,9 +7,9 @@
         <v-divider dark></v-divider>
         <h1
           class="text-h5 lighter--text font-weight-light text-center pt-8 pb-4"
-        >Base URL: {{ baseURL }}</h1>
+        >Base URL:<br>{{ baseURL }}</h1>
 
-        <div v-for="section in api" :key="section.sectionName" class="px-10 py-5">
+        <div v-for="section in api" :key="section.sectionName" class="py-5">
           <h1 class="text-h4 font-weight-light light--text pb-2">{{ section.sectionName }}</h1>
           <v-simple-table dark>
             <template v-slot:default>
