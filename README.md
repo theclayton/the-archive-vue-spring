@@ -1,7 +1,7 @@
 # The Archive Vue
 #### Vue front end for accessing a Spring Boot Web backend
 
-Check it out by [visiting the live site here](https://archive-vue.flaresoftware.com/).
+Check it out by [visiting the live site here](https://archive.flaresoftware.com/).
 
 This repository contains the front end source for the Archive Vue. I developed it 
 using Vue 2 along with Vuetify, Vue router, and Vuex. It is designed with a 
