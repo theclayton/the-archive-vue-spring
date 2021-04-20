@@ -1,9 +1,15 @@
 <template>
-  <div class="d-none d-sm-flex justify-space-around">
+  <div class="d-flex justify-space-around">
     <v-tooltip bottom v-for="(technology, i) in technologies" :key="i">
       <template v-slot:activator="{ on, attrs }">
         <a @click="findProjects(technology.name)">
-          <v-img :src="technology.src" max-height="22" max-width="22" v-on="on" v-bind="attrs"></v-img>
+          <v-img
+            :src="technology.src"
+            max-height="22"
+            max-width="22"
+            v-on="on"
+            v-bind="attrs"
+          ></v-img>
         </a>
       </template>
       <span>{{ technology.name }}</span>
@@ -26,7 +32,13 @@ export default {
     async getTechnologies() {
       try {
         const res = await axios.get("/technologies");
-        this.technologies = res.data;
+        let data = res.data;
+
+        const windowWidth = window.innerWidth;
+        if (windowWidth >= 350 && windowWidth <= 600) {
+          data = data.slice(0, 10);
+        }
+        this.technologies = data;
       } catch (error) {
         // pass
       }
