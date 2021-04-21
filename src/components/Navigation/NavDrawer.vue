@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer fixed permanent expand-on-hover dark color="dark">
+  <v-navigation-drawer fixed permanent disable-resize-watcher touchless expand-on-hover dark color="dark">
     <v-list nav>
       <v-list-item link to="/">
         <v-list-item-icon>
