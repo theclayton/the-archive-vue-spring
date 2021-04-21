@@ -14,7 +14,7 @@ export default {
   data: () => ({
     isLoading: true,
     data: [],
-    width: 400,
+    width: 320,
     height: 200,
     margin: 40,
   }),
@@ -39,7 +39,7 @@ export default {
         .attr("width", this.width)
         .attr("height", this.height)
         .append("g")
-        .attr("transform", "translate(" + this.width / 3 + "," + 0 + ")");
+        .attr("transform", "translate(" + this.width / 2.5 + "," + 0 + ")");
 
       svg
         .selectAll("bars")

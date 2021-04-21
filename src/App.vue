@@ -4,21 +4,21 @@
       <top-nav class="padding-nav-drawer"></top-nav>
       <nav-drawer></nav-drawer>
       <router-view class="padding-nav-drawer" />
-      <Footer class="padding-nav-drawer"></Footer>
+      <archive-footer class="padding-nav-drawer"></archive-footer>
     </div>
   </v-app>
 </template>
 
 <script>
 import NavDrawer from "./components/Navigation/NavDrawer.vue";
-import Footer from "./components/Navigation/Footer.vue";
+import ArchiveFooter from "./components/Navigation/Footer.vue";
 import TopNav from "./components/Navigation/TopNav.vue";
 
 export default {
   name: "App",
   components: {
     NavDrawer,
-    Footer,
+    ArchiveFooter,
     TopNav,
   },
 };
