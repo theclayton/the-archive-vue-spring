@@ -42,11 +42,11 @@ export default {
         this.height = 275;
         this.thicknessRatio = 1.065;
         this.projectCountFontSize = 57;
-        this.projectCountPaddingRight = -34;
+        this.projectCountPaddingRight = -30;
         this.projectCountPaddingTop = 9;
-        this.projectsLabelPaddingRight = -31
+        this.projectsLabelPaddingRight = -33
         this.projectsLabelPaddingTop = 35
-      }
+      }801-565-8326
     },
     async getCategoriesCount() {
       try {
